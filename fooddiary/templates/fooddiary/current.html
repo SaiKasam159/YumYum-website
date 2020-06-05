@@ -1,0 +1,16 @@
+{% extends 'fooddiary/base.html' %}
+{% block content %}
+    <h1>Eaten Meals</h1>   
+    {% csrf_token %}
+
+<ul>
+    {% for meal in meals %}
+    <a href="{% url 'viewmeal' meal.id %}">    
+        <li>{{ meal.nameOfMeal }} -- {{ meal.date }}{% if meal.descriptionOfMeal %} -- {{ meal.descriptionOfMeal }} {% endif %}</li>
+    </a>
+    {% endfor %}
+</ul>
+
+
+
+{% endblock %}

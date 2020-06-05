@@ -1,0 +1,52 @@
+{% extends "fooddiary/base.html" %}
+
+{% block content %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+
+            <h1>Weekly Summary</h1>
+        
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+        {% if meals %}
+            
+                <div class="list-group">
+                    {% for meal in meals %}
+                        <a href="{% url 'viewmeal' meal.id %}" class="list-group-item list-group-item-action"><b>{{ meal.nameOfMeal }}</b>   {{ meal.date }}{% if meal.descriptionOfMeal %}   {{ meal.descriptionOfMeal|truncatechars:20 }} {% endif %}</a>
+                    {% endfor %}
+                    
+                </div>
+                
+                
+
+            
+        {% else %}
+            <div class="text-center">
+                <h2>Looks like you haven't eaten anything this week.</h2>
+            <br>
+            <a role="button" class="btn btn-primary" href="{% url 'createmeal' %}">Create Meal</a>
+            </div>
+        {% endif %}
+        
+        {% if activities %}
+            <div class="list-group">
+                {% for activity in activities %}
+                    <a href="{% url 'viewactivity' activity.id %}" class="list-group-item list-group-item-action"><b>{{ activity.activity }}</b>   {{ activity.date }}{% if activity.description %}   {{ activity.description|truncatechars:20 }} {% endif %}</a>
+                {% endfor %}
+            </div>
+            
+            
+        {% else %}
+            <div class="text-center">
+                <h2>Looks like you haven't done any exercise this week.</h2>
+            <br>
+            <a role="button" class="btn btn-primary" href="{% url 'createmeal' %}">Create Activity</a>
+            </div>
+
+    
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}

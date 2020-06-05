@@ -1,0 +1,37 @@
+{% extends "fooddiary/base.html" %}
+
+{% block content %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+            {% if meals %}
+                 <h1>{{ meals.count }} Eaten Meal{{ meals.count|pluralize }}</h1>
+            {% else %}
+                           <h1>Eaten Meals</h1>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+        {% if meals %}
+            <a role="button" class="btn btn-primary" href="{% url 'createmeal' %}">Create Meal</a>
+            <br>
+            <br>
+            <div class="list-group">
+                {% for meal in meals %}
+                    <a href="{% url 'viewmeal' meal.id %}" class="list-group-item {% if meal.favourite %} list-group-item-danger {% endif %}"><b>{{ meal.nameOfMeal }}</b>   {{ meal.date }}{% if meal.descriptionOfMeal %}   {{ meal.descriptionOfMeal|truncatechars:20 }} {% endif %}</a>
+                {% endfor %}
+            </div>
+            <br>
+            
+
+            
+        {% else %}
+            <div class="text-center">
+                <h2>Looks like you don't have any meals.</h2>
+            <br>
+            <a role="button" class="btn btn-primary" href="{% url 'createmeal' %}">Create Meal</a>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}

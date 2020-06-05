@@ -1,0 +1,42 @@
+
+
+
+
+
+{% extends "fooddiary/base.html" %}
+
+{% block content %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+            {% if activities %}
+                <h1>{{ activities.count }} {% if activities.count|pluralize %} Physical Activities{% else %} Physical Activity{% endif %}</h1>
+            {% else %}
+                <h1>Physical Activity</h1>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+        {% if activities %}
+            
+               
+        <ul>
+            <div class="list-group">
+                {% for activity in activities %}
+                    <a  href="{% url 'viewactivity' activity.id %}" class="list-group-item list-group-item-action"><b>{{ activity.activity }}</b>    {{ activity.date }}{% if activity.description %}   {{ activity.description|truncatechars:20 }} {% endif %}</a>
+                {% endfor %}
+            </div>
+            <br>
+            <a role="button" class="btn btn-primary" href="{% url 'createactivity' %}">Create Activity</a>
+        </ul>
+            
+        {% else %}
+            <div class="text-center">
+                <h2>Looks like you haven't done any exercise.</h2>
+            <br>
+            <a role="button" class="btn btn-primary" href="{% url 'createactivity' %}">Create Activity</a>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}

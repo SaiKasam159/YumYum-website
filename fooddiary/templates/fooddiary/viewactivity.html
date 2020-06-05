@@ -1,0 +1,38 @@
+{% extends 'fooddiary/base.html' %}
+{% block content %}
+{% if error %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+{% endif %}
+
+<h1><b><u>{{ activity.activity }} -- {{ activity.date }}{% if activity.description %} -- {{ activity.description|truncatechars:15 }} {% endif %}</u></b></h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-group">   
+        <label for="activity">Name of Activity</label>
+        <input type='text'   name="activity" class="form-control" id="Activity" value="{{ activity.activity }}">
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea name="description" class="form-control" id="Description" >{{ activity.description }}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" name="date" class="form-control" id="Date" value="{{ activity.date|date:'Y-m-d' }}">
+    </div>
+    
+
+    <button type="submit" class="btn btn-success ">Save Activity</button>
+</form>
+<br>
+
+<form method="POST" action="{% url 'deleteactivity' activity.id %}">
+    {% csrf_token %}
+    
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+
+
+{% endblock %}
