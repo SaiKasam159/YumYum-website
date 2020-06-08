@@ -5,6 +5,7 @@ class Meal(models.Model):
     descriptionOfMeal = models.TextField(max_length=500, blank=True)
     date = models.DateField(auto_now_add=False ,auto_now=False, null=True, blank=True)
     favourite = models.BooleanField(default=False)
+    image = models.ImageField(null = True, blank=True , upload_to='fooddiary/images')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -17,6 +18,7 @@ class Activity(models.Model):
     activity = models.CharField(max_length=50)
     description = models.TextField(max_length=500, blank=True)
     date = models.DateField(auto_now_add=False ,auto_now=False, null=True, blank=True)
+    image = models.ImageField(null = True, blank=True , upload_to='fooddiary/images')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

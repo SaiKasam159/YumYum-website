@@ -5,7 +5,7 @@ from .models import Meal,Activity
 class MealForm(ModelForm):
     class Meta():
         model = Meal
-        fields = ['nameOfMeal', 'descriptionOfMeal', 'date','favourite']
+        fields = ['nameOfMeal', 'descriptionOfMeal', 'date','favourite','image']
 
 class ActivityForm(ModelForm):
     class Meta():
