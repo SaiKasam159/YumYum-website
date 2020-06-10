@@ -20,12 +20,9 @@
     </div>
     <div class="form-group">
         <label for="date">Date</label>
-        <input type="date" name="date" class="form-control" id="Date" value="{{ activity.date|date:'Y-m-d' }}">
+        <input type="date" name="date" class="form-control" id="Date" value="{{ activity.date|date:'Y-m-d' }}" required>
     </div>
-    <div class="form-group">
-        <label for="image">Image</label>
-        <input type="file" name="image" class="form-control" id="Image" value="{{ activity.image }}">
-    </div>
+    
 
     <button type="submit" class="btn btn-success ">Save Activity</button>
 </form>

@@ -31,10 +31,10 @@
     </div>
 	<div class="form-group">
         <label for="image">Image</label>
-        <img src='/media/fooddiary/images/passwords.jpeg'>
+        <img src="{{ meal.image.url }}" class="img-responsive">
         <input type="file" name="image" class="form-control" id="Image" value="{{ meal.image }}">
     </div>
-    
+    {{ meal.image }}
 
     <button type="submit"  class="btn btn-primary">Save meal</button>
 </form>
